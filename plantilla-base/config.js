@@ -1,7 +1,7 @@
 const CONFIG = {
 
   // ===== DATOS PRINCIPALES =====
-  nombre: "marlen",
+  nombre: "Marlen",
   fechaTexto: "22 · 09 · 2026",
   fechaCuentaRegresiva: "2026-12-15T17:00:00",
   telefonoWhatsApp: "527531006781",
@@ -18,7 +18,7 @@ const CONFIG = {
     "Rosa Mendoza Salgado"
   ],
 
-  mensaje: "Hayy 😉😉momentos en la vida que son especiales por sí solos, pero compartirlos con quienes más quiero los convierte en inolvidables. Te invito a celebrar conmigo este día tan especial.",
+  mensaje: "Hayy momentos en la vida que son especiales por sí solos, pero compartirlos con quienes más quiero los convierte en inolvidables. Te invito a celebrar conmigo este día tan especial.",
 
   // ===== CEREMONIA =====
   ceremonia: {
