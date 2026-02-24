@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -955,25 +954,38 @@ window.addEventListener("load", function(){
   if(hashtag) hashtag.innerText = CONFIG.hashtag;
  
   /* ===== CEREMONIA ===== */
-  const c = CONFIG.ceremonia;
-  if(document.getElementById("cerLugar")){
-    cerLugar.innerText = c.lugar;
-    cerHora.innerText = c.hora;
-    cerDireccion.innerText = c.direccion;
-    cerCiudad.innerText = c.ciudad;
-    cerMapa.href = c.mapa;
-  }
+const c = CONFIG.ceremonia;
+
+const cerLugar = document.getElementById("cerLugar");
+const cerHora = document.getElementById("cerHora");
+const cerDireccion = document.getElementById("cerDireccion");
+const cerCiudad = document.getElementById("cerCiudad");
+const cerMapa = document.getElementById("cerMapa");
+
+if(cerLugar){
+  cerLugar.innerText = c.lugar;
+  cerHora.innerText = c.hora;
+  cerDireccion.innerText = c.direccion;
+  cerCiudad.innerText = c.ciudad;
+  cerMapa.href = c.mapa;
+}
 
   /* ===== RECEPCIÓN ===== */
   const r = CONFIG.recepcion;
-  if(document.getElementById("recLugar")){
-    recLugar.innerText = r.lugar;
-    recHora.innerText = r.hora;
-    recDireccion.innerText = r.direccion;
-    recCiudad.innerText = r.ciudad;
-    recMapa.href = r.mapa;
-  }
 
+const recLugar = document.getElementById("recLugar");
+const recHora = document.getElementById("recHora");
+const recDireccion = document.getElementById("recDireccion");
+const recCiudad = document.getElementById("recCiudad");
+const recMapa = document.getElementById("recMapa");
+
+if(recLugar){
+  recLugar.innerText = r.lugar;
+  recHora.innerText = r.hora;
+  recDireccion.innerText = r.direccion;
+  recCiudad.innerText = r.ciudad;
+  recMapa.href = r.mapa;
+}
   /* ===== ITINERARIO ===== */
   const timeline = document.getElementById("timeline");
   if(timeline){
