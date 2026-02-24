@@ -1,16 +1,16 @@
 const CONFIG = {
 
   // ===== DATOS PRINCIPALES =====
-  nombre: "Laura",
-  fechaTexto: "15 · 12 · 2026",
+  nombre: "marlen",
+  fechaTexto: "22 · 09 · 2026",
   fechaCuentaRegresiva: "2026-12-15T17:00:00",
   telefonoWhatsApp: "527531006781",
   hashtag: "#XVLaura2026",
 
   // ===== PADRES Y PADRINOS =====
   padres: [
-    "Pablo Mendoza Huerta",
-    "Miriam Sanchez Cornejo"
+    "marca del socorro",
+    "pamela castaño"
   ],
 
   padrinos: [
