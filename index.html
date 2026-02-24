@@ -941,10 +941,11 @@ style="height:60px; margin-top:15px;">
 </section>
 <script src="config.js"></script>
 <script>
-
 alert("config cargado");
+
 window.addEventListener("load", function(){
-/* ===== DATOS PRINCIPALES ===== */
+
+  /* ===== DATOS PRINCIPALES ===== */
   const nombre = document.getElementById("nombrePrincipal");
   const fecha = document.getElementById("fechaEventoTexto");
   const hashtag = document.getElementById("hashtagEvento");
@@ -952,40 +953,39 @@ window.addEventListener("load", function(){
   if(nombre) nombre.innerText = CONFIG.nombre;
   if(fecha) fecha.innerText = CONFIG.fechaTexto;
   if(hashtag) hashtag.innerText = CONFIG.hashtag;
- 
+
   /* ===== CEREMONIA ===== */
-const c = CONFIG.ceremonia;
+  const c = CONFIG.ceremonia;
+  const cerLugar = document.getElementById("cerLugar");
+  const cerHora = document.getElementById("cerHora");
+  const cerDireccion = document.getElementById("cerDireccion");
+  const cerCiudad = document.getElementById("cerCiudad");
+  const cerMapa = document.getElementById("cerMapa");
 
-const cerLugar = document.getElementById("cerLugar");
-const cerHora = document.getElementById("cerHora");
-const cerDireccion = document.getElementById("cerDireccion");
-const cerCiudad = document.getElementById("cerCiudad");
-const cerMapa = document.getElementById("cerMapa");
-
-if(cerLugar){
-  cerLugar.innerText = c.lugar;
-  cerHora.innerText = c.hora;
-  cerDireccion.innerText = c.direccion;
-  cerCiudad.innerText = c.ciudad;
-  cerMapa.href = c.mapa;
-}
+  if(cerLugar){
+    cerLugar.innerText = c.lugar;
+    cerHora.innerText = c.hora;
+    cerDireccion.innerText = c.direccion;
+    cerCiudad.innerText = c.ciudad;
+    cerMapa.href = c.mapa;
+  }
 
   /* ===== RECEPCIÓN ===== */
   const r = CONFIG.recepcion;
+  const recLugar = document.getElementById("recLugar");
+  const recHora = document.getElementById("recHora");
+  const recDireccion = document.getElementById("recDireccion");
+  const recCiudad = document.getElementById("recCiudad");
+  const recMapa = document.getElementById("recMapa");
 
-const recLugar = document.getElementById("recLugar");
-const recHora = document.getElementById("recHora");
-const recDireccion = document.getElementById("recDireccion");
-const recCiudad = document.getElementById("recCiudad");
-const recMapa = document.getElementById("recMapa");
+  if(recLugar){
+    recLugar.innerText = r.lugar;
+    recHora.innerText = r.hora;
+    recDireccion.innerText = r.direccion;
+    recCiudad.innerText = r.ciudad;
+    recMapa.href = r.mapa;
+  }
 
-if(recLugar){
-  recLugar.innerText = r.lugar;
-  recHora.innerText = r.hora;
-  recDireccion.innerText = r.direccion;
-  recCiudad.innerText = r.ciudad;
-  recMapa.href = r.mapa;
-}
   /* ===== ITINERARIO ===== */
   const timeline = document.getElementById("timeline");
   if(timeline){
@@ -1011,6 +1011,58 @@ if(recLugar){
   if(padres) padres.innerHTML = CONFIG.padres.join("<br>");
   if(padrinos) padrinos.innerHTML = CONFIG.padrinos.join("<br>");
   if(mensaje) mensaje.innerText = CONFIG.mensaje;
+
+  /* ===== INVITADO ===== */
+  const nombreInvitado = document.getElementById("nombreInvitado");
+  if(nombreInvitado && CONFIG.invitado){
+    nombreInvitado.innerText = CONFIG.invitado;
+  }
+
+  /* ===== FAMILIA ===== */
+  const nombreFamilia = document.querySelector(".nombre-familia");
+  const formFamilia = document.getElementById("formFamilia");
+
+  if(nombreFamilia && CONFIG.familia){
+    nombreFamilia.innerText = CONFIG.familia.nombre;
+  }
+
+  if(formFamilia && CONFIG.familia){
+    let html = "";
+    CONFIG.familia.integrantes.forEach(nombre => {
+      html += `
+        <label class="opcion">
+          <input type="checkbox" name="asistentes" value="${nombre}">
+          ${nombre}
+        </label>
+      `;
+    });
+
+    html += `
+      <label class="opcion">
+        <input type="checkbox" name="asistentes" value="No podremos asistir">
+        No podremos asistir
+      </label>
+    `;
+
+    formFamilia.innerHTML = html;
+  }
+
+  /* ===== REGALOS ===== */
+  if(CONFIG.regalos){
+    const carta = document.querySelector(".carta");
+    if(carta){
+      carta.innerHTML = `
+        <p>Beneficiario: ${CONFIG.regalos.beneficiario}</p>
+        <p>Banco: ${CONFIG.regalos.banco}</p>
+        <p>Cuenta: ${CONFIG.regalos.cuenta}</p>
+        <p>CLABE: ${CONFIG.regalos.clabe}</p>
+      `;
+    }
+
+    const amazonBtn = document.querySelector('.card-regalo a');
+    if(amazonBtn) amazonBtn.href = CONFIG.regalos.amazon;
+  }
+
 });
 /* CUENTA REGRESIVA */
 const fechaEvento=new Date(CONFIG.fechaCuentaRegresiva).getTime();
