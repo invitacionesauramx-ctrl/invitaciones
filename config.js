@@ -1,37 +1,37 @@
 const CONFIG = {
 
   // ===== DATOS PRINCIPALES =====
-  nombre: "Laura",
-  fechaTexto: "15 · 12 · 2026",
-  fechaCuentaRegresiva: "2026-12-15T17:00:00",
+  nombre: "mayra",
+  fechaTexto: "25 · 02 · 2026",
+  fechaCuentaRegresiva: "2026-02-25T17:00:00",
   telefonoWhatsApp: "527531006781",
-  hashtag: "#XVLaura2026",
+  hashtag: "#XVMayra2026",
 
   // ===== PADRES Y PADRINOS =====
   padres: [
-    "Pablo Mendoza Huerta",
-    "Miriam Sanchez Cornejo"
+    "Blanca estela sanchez",
+    "maria pamela basurto"
   ],
 
   padrinos: [
-    "Maylet Perez Nuñez",
-    "Rosa Mendoza Salgado"
+    "fidencio Perez Nuñez",
+    "niksury Mendoza Salgado"
   ],
 
-  mensaje: "Hayy 😉😉momentos en la vida que son especiales por sí solos, pero compartirlos con quienes más quiero los convierte en inolvidables. Te invito a celebrar conmigo este día tan especial.",
+  mensaje: "Hay 😉😉momentos en la vida que son especiales por sí solos, pero compartirlos con quienes más quiero los convierte en inolvidables. Te invito a celebrar conmigo este día tan especial.",
 
   // ===== CEREMONIA =====
   ceremonia: {
-    lugar: "Iglesia la capilla del niño",
+    lugar: "Iglesia la capilla del cotorro",
     hora: "21:00 hrs",
-    direccion: "El Cerrito Valle #453",
+    direccion: "El Cerrito maton #453",
     ciudad: "Potasio, 60924",
     mapa: "https://www.google.com/maps/search/Iglesia+Espiritu+Santo"
   },
 
   // ===== RECEPCIÓN =====
   recepcion: {
-    lugar: "Zona Exclusiva",
+    lugar: "Zona ricos",
     hora: "20:00 hrs",
     direccion: "Av. Manuel L. Barragán 134",
     ciudad: "Anáhuac, 60957",
@@ -40,11 +40,11 @@ const CONFIG = {
 
   // ===== ITINERARIO =====
   itinerario: [
-    { hora: "17:00", titulo: "Ceremonia Religiosa", lugar: "Iglesia la capilla del niño" },
-    { hora: "19:00", titulo: "Presentación" },
-    { hora: "20:00", titulo: "Recepción", lugar: "Zona Exclusiva" },
-    { hora: "21:30", titulo: "Cena" },
-    { hora: "22:30", titulo: "Baile" }
+    { hora: "17:00", titulo: "Ceremonia santos", lugar: "Iglesia la capilla del niño" },
+    { hora: "19:00", titulo: "Presenta novia" },
+    { hora: "20:00", titulo: "apartar lugar", lugar: "Zona Exclusiva" },
+    { hora: "21:30", titulo: "Cena chida" },
+    { hora: "22:30", titulo: "Baile regee" }
   ]
 
 };
