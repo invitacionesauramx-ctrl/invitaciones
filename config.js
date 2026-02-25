@@ -1,8 +1,8 @@
 const CONFIG = {
 
-  nombre: "Madre Alejandra",
-  fechaTexto: "25 · 02 · 2026",
-  fechaCuentaRegresiva: "2026-02-25T17:00:00",
+  nombre: "Mayra Alejandra",
+  fechaTexto: "24 · 02 · 2026",
+  fechaCuentaRegresiva: "2026-02-24T19:00:00",
   telefonoWhatsApp: "527531006781",
   hashtag: "#XVMayra2026",
 
@@ -67,11 +67,11 @@ const CONFIG = {
 // ¡Aquí agregamos las sugerencias FUERA del objeto CONFIG!
 CONFIG.sugerencias = {
   hospedaje: [
-    { nombre: "Hotel Paraíso", direccion: "Av. Principal 123, Ciudad", mapa: "https://www.google.com/maps/search/Hotel+Paraiso" },
-    { nombre: "Hotel Sol", direccion: "Calle Luna 45, Ciudad", mapa: "https://www.google.com/maps/search/Hotel+Sol" }
+    { nombre: "Hotel pacifica", direccion: "Av. noyola 123, Ciudad", mapa: "https://www.google.com/maps/search/Hotel+Paraiso" },
+    { nombre: "Hotel colibri", direccion: "Calle ferrocarriles 45, Ciudad", mapa: "https://www.google.com/maps/search/Hotel+Sol" }
   ],
   lugares: [
-    { nombre: "Parque Central", direccion: "Calle 1, Ciudad", mapa: "https://www.google.com/maps/search/Parque+Central" },
-    { nombre: "Museo de Arte", direccion: "Avenida Cultura 22, Ciudad", mapa: "https://www.google.com/maps/search/Museo+de+Arte" }
+    { nombre: "Parque malecon", direccion: "Calle 1, Ciudad", mapa: "https://www.google.com/maps/search/Parque+Central" },
+    { nombre: "plaza zirahuen", direccion: "Avenida Cultura 22, Ciudad", mapa: "https://www.google.com/maps/search/Museo+de+Arte" }
   ]
 };
