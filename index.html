@@ -1027,25 +1027,35 @@ window.addEventListener("load", function(){
   }
 
   if(formFamilia && CONFIG.familia){
-    let html = "";
-    CONFIG.familia.integrantes.forEach(nombre => {
-      html += `
-        <label class="opcion">
-          <input type="checkbox" name="asistentes" value="${nombre}">
-          ${nombre}
-        </label>
-      `;
-    });
 
-    html += `
-      <label class="opcion">
-        <input type="checkbox" name="asistentes" value="No podremos asistir">
-        No podremos asistir
-      </label>
-    `;
+let html = "";
 
-    formFamilia.innerHTML = html;
-  }
+CONFIG.familia.miembros.forEach(nombre => {
+
+html += `
+<label class="opcion">
+<input type="checkbox" name="asistentes" value="${nombre}">
+${nombre}
+</label>
+`;
+
+});
+
+html += `
+<label class="opcion">
+<input type="checkbox" name="asistentes" value="No podremos asistir">
+No podremos asistir
+</label>
+
+<button type="button" class="btn-confirmar"
+onclick="enviarFamiliaWhatsApp()">
+CONFIRMAR
+</button>
+`;
+
+formFamilia.innerHTML = html;
+
+}
 
   /* ===== REGALOS ===== */
   if(CONFIG.regalos){
@@ -1108,23 +1118,50 @@ function confirmarAsistencia(){
 
 /* CONFIRMACIÓN FAMILIA POR WHATSAPP */
 function enviarFamiliaWhatsApp(){
-    const checkboxes = document.querySelectorAll('#formFamilia input[type="checkbox"]:checked');
-    
-    if(checkboxes.length === 0){
-        alert("Por favor selecciona al menos una opción");
-        return;
-    }
 
-    let mensaje = "Confirmación de asistencia - Familia Hernández López:%0A";
+const telefono = CONFIG.familia.telefono;
 
-    checkboxes.forEach(cb => {
-        mensaje += "• " + cb.value + "%0A";
-    });
+if(!telefono){
 
-    const telefono = CONFIG.telefonoWhatsApp; // Cambia por tu número
-    const url = "https://wa.me/" + telefono + "?text=" + mensaje;
+alert("No hay teléfono configurado");
 
-    window.open(url, "_blank");
+return;
+
+}
+
+const seleccionados =
+document.querySelectorAll(
+'#formFamilia input[name="asistentes"]:checked'
+);
+
+let nombres = [];
+
+seleccionados.forEach(el => {
+
+nombres.push(el.value);
+
+});
+
+if(nombres.length == 0){
+
+alert("Selecciona al menos una opción");
+
+return;
+
+}
+
+const mensaje =
+"Confirmación de asistencia:\n\n" +
+nombres.join("\n");
+
+const url =
+"https://wa.me/" +
+telefono +
+"?text=" +
+encodeURIComponent(mensaje);
+
+window.open(url,"_blank");
+
 }
 
 /* ANIMACIÓN ITINERARIO BLOQUE POR BLOQUE */
