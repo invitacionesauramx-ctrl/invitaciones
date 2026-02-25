@@ -13,28 +13,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
 
 <style>
-:root{
-
---color-primario:#1b4332;
---color-secundario:#d4af37;
---color-acento:#d4af37;
-
---color-fondo:#faf9f7;
---color-tarjeta:#ffffff;
-
---color-texto:#333;
---color-texto-secundario:#777;
-
---color-boton:#1b4332;
---color-boton-texto:#ffffff;
-
-}
-
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
   font-family:'Cormorant Garamond',serif;
-  background:var(--color-fondo);
-  color:var(--color-texto);
+  background:#faf9f7;
   overflow:hidden;
 }
 .section{padding:80px 20px;text-align:center;position:relative;}
@@ -91,18 +73,16 @@ body{
   box-shadow:0 25px 60px rgba(0,0,0,.4);
 }
 .card-ceremonia{
-  background:var(--color-tarjeta);
+  background:rgba(255,255,255,.93);
   backdrop-filter:blur(6px);
   padding:40px 25px;
   max-width:600px;
   margin:auto;
-  color:var(--color-texto);
+  color:#333;
   border-radius:16px;
   box-shadow:0 25px 60px rgba(0,0,0,.25);
 }
-.btn-mapa{display:inline-block;margin-top:15px;padding:10px 25px;background:var(--color-boton);
-color:var(--color-boton-texto);
-}
+.btn-mapa{display:inline-block;margin-top:15px;padding:10px 25px;background:#1b4332;color:white;text-decoration:none}
 
 /* ITINERARIO */
 .bloque-itinerario{
@@ -251,20 +231,17 @@ color:var(--color-boton-texto);
   margin-bottom:40px;
 }
 .btn-vestimenta{
-
-  background:var(--color-boton);
-  color:var(--color-boton-texto);
-
+  background:#d4af37;        /* Botón dorado */
+  color:#000000;             /* Letra negra */
   border:none;
   padding:15px 40px;
   font-size:1.8rem;
   font-weight:700;
   border-radius:50px;
   cursor:pointer;
-  font-family:'Playfair Display', serif;
+  font-family:'Playfair Display', serif; /* Elegante y legible */
   text-transform:uppercase;  
   margin-top:20px;
-
 }
 .bloque-confirmacion{
   display:flex;
@@ -308,15 +285,19 @@ color:var(--color-boton-texto);
 }
 
 .btn-confirmar{
-
-background:var(--color-boton);
-color:var(--color-boton-texto);
-
+  margin-top:30px;
+  background:#0f4c3a;
+  color:white;
+  border:none;
+  padding:14px 40px;
+  font-size:16px;
+  letter-spacing:3px;
+  cursor:pointer;
+  transition:0.3s;
 }
 
 .btn-confirmar:hover{
-  background:var(--color-boton);
-color:var(--color-boton-texto);
+  background:#0c3a2d;
 }
 /* REGALOS PREMIUM */
 
@@ -395,8 +376,7 @@ margin-bottom:15px;
 
 .btn-toggle{
 
-background:var(--color-boton);
-color:var(--color-boton-texto);
+background:#1b4332;
 color:white;
 border:none;
 
@@ -528,8 +508,7 @@ padding:0 5px;
 #entradaSobre{
   position:fixed;
   inset:0;
-  background:var(--color-boton);
-color:var(--color-boton-texto);
+  background:#111;
   display:flex;
   justify-content:center;
   align-items:flex-end; /* antes era center, ahora abajo */
@@ -553,8 +532,6 @@ color:var(--color-boton-texto);
   50%{ transform: scale(1.1) rotate(10deg) translateY(0); opacity:1; }
   100%{ transform: scale(1) rotate(0deg) translateY(0); opacity:1; }
 }
-
-
 </style>
 </head>
 <body>
@@ -968,26 +945,6 @@ alert("config cargado");
 
 window.addEventListener("load", function(){
 
-  /* ===== APLICAR COLORES ===== */
-
-if(CONFIG.colores){
-
-document.documentElement.style.setProperty('--color-primario', CONFIG.colores.primario);
-document.documentElement.style.setProperty('--color-secundario', CONFIG.colores.secundario);
-document.documentElement.style.setProperty('--color-acento', CONFIG.colores.acento);
-
-document.documentElement.style.setProperty('--color-fondo', CONFIG.colores.fondo);
-document.documentElement.style.setProperty('--color-tarjeta', CONFIG.colores.tarjeta);
-
-document.documentElement.style.setProperty('--color-texto', CONFIG.colores.texto);
-document.documentElement.style.setProperty('--color-texto-secundario', CONFIG.colores.textoSecundario);
-
-document.documentElement.style.setProperty('--color-boton', CONFIG.colores.boton);
-document.documentElement.style.setProperty('--color-boton-texto', CONFIG.colores.botonTexto);
-
-}
-
-  
   /* ===== DATOS PRINCIPALES ===== */
   const nombre = document.getElementById("nombrePrincipal");
   const fecha = document.getElementById("fechaEventoTexto");
@@ -1284,18 +1241,17 @@ sobre.classList.toggle("abierto");
 }
 
 
-<script>
 function iniciarInvitacion(){
   const sobre = document.getElementById('entradaSobre');
   sobre.style.opacity = '0';
   setTimeout(() => sobre.style.display = 'none', 1000);
 
-  // Reproducir música
   const musica = document.getElementById('musica-fondo');
   if(musica){
     musica.play().catch(e => console.log("Autoplay bloqueado, toca para iniciar música"));
   }
 
+  // Permitir scroll del body
   document.body.style.overflow = 'auto';
 }
 </script>
