@@ -1,7 +1,7 @@
 const CONFIG = {
   nombre: "Adriana bentacourt",
-  fechaTexto: "26 · 02 · 2026",
-  fechaCuentaRegresiva: "2026-02-26T22:00:00",
+  fechaTexto: "24 · 02 · 2026",
+  fechaCuentaRegresiva: "2026-02-24T22:00:00",
   telefonoWhatsApp: "527531006781",
   hashtag: "#XVAdriana2026",
 
@@ -47,8 +47,8 @@ const CONFIG = {
   },
 
   itinerario: [
-    { hora: "17:00", titulo: "Ceremonia vip", lugar: "Iglesia la capilla del niño" },
-    { hora: "19:00", titulo: "Presentación de vip" },
+    { hora: "17:00", titulo: "Ceremonia ben", lugar: "Iglesia la capilla del niño" },
+    { hora: "19:00", titulo: "Presentación de ben" },
     { hora: "20:00", titulo: "Recepción ben", lugar: "Zona bentacourt" },
     { hora: "21:30", titulo: "Cena ben" },
     { hora: "22:30", titulo: "Baile ben" }
