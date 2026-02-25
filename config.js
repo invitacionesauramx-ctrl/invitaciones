@@ -1,7 +1,7 @@
 const CONFIG = {
   nombre: "Adriana bentacourt",
-  fechaTexto: "24 · 02 · 2026",
-  fechaCuentaRegresiva: "2026-02-24T22:00:00",
+  fechaTexto: "26 · 02 · 2026",
+  fechaCuentaRegresiva: "2026-02-26T22:00:00",
   telefonoWhatsApp: "527531006781",
   hashtag: "#XVAdriana2026",
 
