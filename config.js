@@ -79,14 +79,14 @@ const CONFIG = {
     secundario: "#c39bd3",
     acento: "#f1c40f",
 
-    fondo: "#0f0f0f",
+    fondo: "#FF5733",
     tarjeta: "rgba(0,0,0,0.55)",
 
     texto: "#ffffff",
     textoSecundario: "#dddddd",
 
-    boton: "#8e44ad",
-    botonTexto: "#ffffff"
+    boton: "#FF5733",
+    botonTexto: "#000000"
 
   }
 
