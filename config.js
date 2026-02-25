@@ -47,8 +47,8 @@ const CONFIG = {
   },
 
   itinerario: [
-    { hora: "17:00", titulo: "Ceremonia ben", lugar: "Iglesia la capilla del niño" },
-    { hora: "19:00", titulo: "Presentación de ben" },
+    { hora: "17:00", titulo: "Ceremonia vip", lugar: "Iglesia la capilla del niño" },
+    { hora: "19:00", titulo: "Presentación de vip" },
     { hora: "20:00", titulo: "Recepción ben", lugar: "Zona bentacourt" },
     { hora: "21:30", titulo: "Cena ben" },
     { hora: "22:30", titulo: "Baile ben" }
