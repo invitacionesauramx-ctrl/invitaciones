@@ -1028,7 +1028,7 @@ window.addEventListener("load", function(){
 
   if(formFamilia && CONFIG.familia){
     let html = "";
-    CONFIG.familia.integrantes.forEach(nombre => {
+    CONFIG.familia.miembros.forEach(nombre => {   // ⚠ aquí estaba 'integrantes'
       html += `
         <label class="opcion">
           <input type="checkbox" name="asistentes" value="${nombre}">
@@ -1045,7 +1045,7 @@ window.addEventListener("load", function(){
     `;
 
     formFamilia.innerHTML = html;
-  }
+}
 
   /* ===== REGALOS ===== */
   if(CONFIG.regalos){
