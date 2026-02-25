@@ -1256,6 +1256,19 @@ sobre.classList.toggle("abierto");
 }
 
 
+let musicaActivada = false;
+
+document.addEventListener("click", () => {
+  if(!musicaActivada){
+    const musica = document.getElementById("musica-fondo");
+    if(musica){
+      musica.play().then(() => {
+        musicaActivada = true;
+      }).catch(()=>{});
+    }
+  }
+});
+
 function iniciarInvitacion(){
   const sobre = document.getElementById('entradaSobre');
   sobre.style.opacity = '0';
@@ -1263,7 +1276,9 @@ function iniciarInvitacion(){
 
   const musica = document.getElementById('musica-fondo');
   if(musica){
-    musica.play().catch(e => console.log("Autoplay bloqueado, toca para iniciar música"));
+    musica.play().then(()=>{
+      musicaActivada = true;
+    }).catch(e => console.log("Autoplay bloqueado, toca para iniciar música"));
   }
 
   // Permitir scroll del body
