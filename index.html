@@ -1027,35 +1027,25 @@ window.addEventListener("load", function(){
   }
 
   if(formFamilia && CONFIG.familia){
+    let html = "";
+    CONFIG.familia.integrantes.forEach(nombre => {
+      html += `
+        <label class="opcion">
+          <input type="checkbox" name="asistentes" value="${nombre}">
+          ${nombre}
+        </label>
+      `;
+    });
 
-let html = "";
+    html += `
+      <label class="opcion">
+        <input type="checkbox" name="asistentes" value="No podremos asistir">
+        No podremos asistir
+      </label>
+    `;
 
-CONFIG.familia.miembros.forEach(nombre => {
-
-html += `
-<label class="opcion">
-<input type="checkbox" name="asistentes" value="${nombre}">
-${nombre}
-</label>
-`;
-
-});
-
-html += `
-<label class="opcion">
-<input type="checkbox" name="asistentes" value="No podremos asistir">
-No podremos asistir
-</label>
-
-<button type="button" class="btn-confirmar"
-onclick="enviarFamiliaWhatsApp()">
-CONFIRMAR
-</button>
-`;
-
-formFamilia.innerHTML = html;
-
-}
+    formFamilia.innerHTML = html;
+  }
 
   /* ===== REGALOS ===== */
   if(CONFIG.regalos){
@@ -1121,14 +1111,6 @@ function enviarFamiliaWhatsApp(){
 
 const telefono = CONFIG.familia.telefono;
 
-if(!telefono){
-
-alert("No hay teléfono configurado");
-
-return;
-
-}
-
 const seleccionados =
 document.querySelectorAll(
 '#formFamilia input[name="asistentes"]:checked'
@@ -1137,22 +1119,23 @@ document.querySelectorAll(
 let nombres = [];
 
 seleccionados.forEach(el => {
-
-nombres.push(el.value);
-
+nombres.push("• " + el.value);
 });
 
 if(nombres.length == 0){
 
 alert("Selecciona al menos una opción");
-
 return;
 
 }
 
 const mensaje =
-"Confirmación de asistencia:\n\n" +
-nombres.join("\n");
+"✨ Confirmación de Asistencia ✨\n\n" +
+"Familia: " + CONFIG.familia.nombre + "\n\n" +
+nombres.join("\n") +
+"\n\nEvento: " + CONFIG.nombre +
+"\nFecha: " + CONFIG.fechaTexto +
+"\n\nGracias 💖";
 
 const url =
 "https://wa.me/" +
