@@ -63,3 +63,15 @@ const CONFIG = {
     galeria: "https://drive.google.com/"
   }
 };
+
+// ¡Aquí agregamos las sugerencias FUERA del objeto CONFIG!
+CONFIG.sugerencias = {
+  hospedaje: [
+    { nombre: "Hotel Paraíso", direccion: "Av. Principal 123, Ciudad", mapa: "https://www.google.com/maps/search/Hotel+Paraiso" },
+    { nombre: "Hotel Sol", direccion: "Calle Luna 45, Ciudad", mapa: "https://www.google.com/maps/search/Hotel+Sol" }
+  ],
+  lugares: [
+    { nombre: "Parque Central", direccion: "Calle 1, Ciudad", mapa: "https://www.google.com/maps/search/Parque+Central" },
+    { nombre: "Museo de Arte", direccion: "Avenida Cultura 22, Ciudad", mapa: "https://www.google.com/maps/search/Museo+de+Arte" }
+  ]
+};
