@@ -537,7 +537,7 @@ padding:0 5px;
 <body>
 
 <!-- ENTRADA DEL SOBRE -->
-<div id="entradaSobre" onclick="iniciarInvitacion()">
+<div id="entradaSobre">
   <img class="sobre-inicial"
        src="https://i.postimg.cc/fW82tq9j/Diseno-sin-titulo-20260223-001937-0000.png"
        alt="Sobre">
@@ -910,6 +910,11 @@ style="height:60px; margin-top:15px;">
   </div>
   
 </section>
+<!-- 🎵 MÚSICA DE FONDO -->
+<audio id="musica-fondo" loop preload="auto" playsinline>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
 <script src="config.js"></script>
 <script>
 alert("config cargado");
@@ -1255,19 +1260,7 @@ sobre.classList.toggle("abierto");
 
 }
 
-
 let musicaActivada = false;
-
-document.addEventListener("click", () => {
-  if(!musicaActivada){
-    const musica = document.getElementById("musica-fondo");
-    if(musica){
-      musica.play().then(() => {
-        musicaActivada = true;
-      }).catch(()=>{});
-    }
-  }
-});
 
 function iniciarInvitacion(){
   const sobre = document.getElementById('entradaSobre');
@@ -1275,21 +1268,43 @@ function iniciarInvitacion(){
   setTimeout(() => sobre.style.display = 'none', 1000);
 
   const musica = document.getElementById('musica-fondo');
-  if(musica){
+
+  if(musica && !musicaActivada){
+    musica.volume = 1;
     musica.play().then(()=>{
       musicaActivada = true;
-    }).catch(e => console.log("Autoplay bloqueado, toca para iniciar música"));
+      console.log("🎵 Música iniciada");
+    }).catch(()=>{
+      alert("Toca la pantalla para activar la música 🎵");
+    });
   }
 
-  // Permitir scroll del body
   document.body.style.overflow = 'auto';
 }
 
-</script>
+/* ===== ACTIVAR EVENTOS DE CLICK Y TOUCH PARA EL SOBRE ===== */
+const sobreEntrada = document.getElementById("entradaSobre");
 
-<audio id="musica-fondo" loop>
-  <source src="musica.mp3" type="audio/mpeg">
-</audio>
+["click","touchstart"].forEach(evento => {
+  sobreEntrada.addEventListener(evento, () => {
+    // Función que oculta el sobre y muestra el contenido
+    iniciarInvitacion();
+
+    // Reproducir música de fondo
+    const musica = document.getElementById("musica-fondo");
+    if(musica && !musicaActivada){
+      musica.volume = 1;
+      musica.currentTime = 0; // reinicia desde el inicio
+      musica.play().then(()=>{
+        musicaActivada = true;
+        console.log("🎵 Música iniciada");
+      }).catch(()=>{
+        alert("Toca la pantalla para activar la música 🎵");
+      });
+    }
+  }, { once: true }); // Se ejecuta solo una vez
+});
+</script>
 
 </body>
 </html>
