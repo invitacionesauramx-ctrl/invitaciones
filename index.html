@@ -554,6 +554,7 @@ color:var(--color-boton-texto);
   100%{ transform: scale(1) rotate(0deg) translateY(0); opacity:1; }
 }
 
+
 </style>
 </head>
 <body>
@@ -1283,17 +1284,18 @@ sobre.classList.toggle("abierto");
 }
 
 
+<script>
 function iniciarInvitacion(){
   const sobre = document.getElementById('entradaSobre');
   sobre.style.opacity = '0';
   setTimeout(() => sobre.style.display = 'none', 1000);
 
+  // Reproducir música
   const musica = document.getElementById('musica-fondo');
   if(musica){
     musica.play().catch(e => console.log("Autoplay bloqueado, toca para iniciar música"));
   }
 
-  // Permitir scroll del body
   document.body.style.overflow = 'auto';
 }
 </script>
