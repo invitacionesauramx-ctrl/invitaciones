@@ -28,7 +28,7 @@ const CONFIG = {
     "Sofia Mendoza bentacourt"
   ],
 
-  mensaje: "Hay🥰🥰 muchos enormes momentos en la vida que son especiales por sí solos...",
+  mensaje: "Hay❤ muchos enormes momentos en la vida que son especiales por sí solos...",
 
   ceremonia: {
     lugar: "Iglesia la esquina de mi bentacourt",
@@ -55,22 +55,22 @@ const CONFIG = {
   ],
 
   regalos: {
-    beneficiario: "Daniela bentacourt",
-    banco: "banamex",
-    cuenta: "12345678",
-    clabe: "123456789",
-    amazon: "https://www.amazon.com.mx",
-    galeria: "https://drive.google.com/"
-  },
+  beneficiario: "Daniela Bentacourt",
+  banco: "Banamex",
+  cuenta: "12345678",
+  clabe: "123456789",
+  amazon: "https://www.amazon.com.mx",
+  galeria: "https://drive.google.com/"
+},
 
   sugerencias: {
-    hospedaje: [
-      { nombre: "Hotel bentacourt", direccion: "Av. Noyola 123, Ciudad", mapa: "https://www.google.com/maps/search/Hotel+Paraiso" },
-      { nombre: "Hotel bentacourt", direccion: "Calle Ferrocarriles 45, Ciudad", mapa: "https://www.google.com/maps/search/Hotel+Sol" }
-    ],
-    lugares: [
-      { nombre: "Parque bentacourt", direccion: "Calle 1, Ciudad", mapa: "https://www.google.com/maps/search/Parque+Central" },
-      { nombre: "Plaza bentacourt", direccion: "Avenida Cultura 22, Ciudad", mapa: "https://www.google.com/maps/search/Museo+de+Arte" }
-    ]
-  }
+  hospedaje: [
+    { nombre: "Hotel Bentacourt", direccion: "Av. Noyola 123, Ciudad", mapa: "https://www.google.com/maps/search/Hotel+Bentacourt" },
+    { nombre: "Hotel Bentacourt 2", direccion: "Calle Ferrocarriles 45, Ciudad", mapa: "https://www.google.com/maps/search/Hotel+Bentacourt+2" }
+  ],
+  lugares: [
+    { nombre: "Parque Bentacourt", direccion: "Calle 1, Ciudad", mapa: "https://www.google.com/maps/search/Parque+Bentacourt" },
+    { nombre: "Plaza Bentacourt", direccion: "Avenida Cultura 22, Ciudad", mapa: "https://www.google.com/maps/search/Plaza+Bentacourt" }
+  ]
+}
 };
