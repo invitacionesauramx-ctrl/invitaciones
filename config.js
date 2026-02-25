@@ -8,15 +8,15 @@ const CONFIG = {
   invitado: "Adrianna bentacourt",
 
   familia: {
-    nombre: "Familia bentacourt",
-    telefono: "527531006781", // Número para WhatsApp en invitación
-    integrantes: [
-      "Anali Ortiz bentacourt",
-      "Flor Ortiz bentacourt",
-      "Pingo Ortiz bentacourt",
-      "Carlos Ortiz bentacourt"
-    ]
-  },
+  nombre: "Familia bentacourt",
+  telefono: "527531006781",
+  miembros: [
+    "Anali Ortiz bentacourt",
+    "Flor Ortiz bentacourt",
+    "Pingo Ortiz bentacourt",
+    "Carlos Ortiz bentacourt"
+  ]
+},
 
   padres: [
     "Virginia bentacourt",
