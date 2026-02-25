@@ -638,42 +638,14 @@ padding:0 5px;
 <!-- BLOQUE CONFIRMACIÓN FAMILIA CON WHATSAPP -->
 <section class="bloque-confirmacion">
   <div class="card-confirmacion">
-    
     <h2 class="titulo-script">Invitación para:</h2>
-    
-    <h3 class="nombre-familia">Familia Hernández López</h3>
-
+    <h3 class="nombre-familia" id="nombreFamilia"></h3>
     <form id="formFamilia">
-      <label class="opcion">
-        <input type="checkbox" name="asistentes" value="Ana Hernández López">
-        Ana Hernández López
-      </label>
-
-      <label class="opcion">
-        <input type="checkbox" name="asistentes" value="Miguel Hernández López">
-        Miguel Hernández López
-      </label>
-
-      <label class="opcion">
-        <input type="checkbox" name="asistentes" value="Sofía Hernández López">
-        Sofía Hernández López
-      </label>
-
-      <label class="opcion">
-        <input type="checkbox" name="asistentes" value="Daniel Hernández López">
-        Daniel Hernández López
-      </label>
-
-      <label class="opcion">
-        <input type="checkbox" name="asistentes" value="No podremos asistir">
-        No podremos asistir
-      </label>
-
+      <!-- Los checkboxes se generan dinámicamente con JS -->
       <button type="button" class="btn-confirmar" onclick="enviarFamiliaWhatsApp()">
         CONFIRMAR
       </button>
     </form>
-
   </div>
 </section>
 
@@ -1018,35 +990,62 @@ window.addEventListener("load", function(){
     nombreInvitado.innerText = CONFIG.invitado;
   }
 
-  /* ===== FAMILIA ===== */
-  const nombreFamilia = document.querySelector(".nombre-familia");
-  const formFamilia = document.getElementById("formFamilia");
+/* ===== FAMILIA ===== */
+const nombreFamilia = document.querySelector(".nombre-familia");
+const formFamilia = document.getElementById("formFamilia");
+const btnConfirmar = document.getElementById("btnConfirmar"); // botón CONFIRMAR
 
-  if(nombreFamilia && CONFIG.familia){
-    nombreFamilia.innerText = CONFIG.familia.nombre;
-  }
+if(nombreFamilia && CONFIG.familia){
+  nombreFamilia.innerText = CONFIG.familia.nombre;
+}
 
-  if(formFamilia && CONFIG.familia){
-    let html = "";
-    CONFIG.familia.integrantes.forEach(nombre => {
-      html += `
-        <label class="opcion">
-          <input type="checkbox" name="asistentes" value="${nombre}">
-          ${nombre}
-        </label>
-      `;
-    });
-
+if(formFamilia && CONFIG.familia){
+  let html = "";
+  CONFIG.familia.integrantes.forEach(nombre => {
     html += `
       <label class="opcion">
-        <input type="checkbox" name="asistentes" value="No podremos asistir">
-        No podremos asistir
+        <input type="checkbox" name="asistentes" value="${nombre}">
+        ${nombre}
       </label>
     `;
+  });
 
-    formFamilia.innerHTML = html;
+  html += `
+    <label class="opcion">
+      <input type="checkbox" name="asistentes" value="No podremos asistir">
+      No podremos asistir
+    </label>
+  `;
+
+  formFamilia.innerHTML = html;
+}
+
+// Asignamos la función al botón
+if(btnConfirmar){
+  btnConfirmar.addEventListener("click", function(e){
+    e.preventDefault();
+    enviarFamiliaWhatsApp();
+  });
+}
+
+// Función para enviar WhatsApp
+function enviarFamiliaWhatsApp() {
+  if(!formFamilia) return;
+
+  const seleccionados = Array.from(formFamilia.querySelectorAll('input[name="asistentes"]:checked'))
+                             .map(cb => cb.value);
+
+  if(seleccionados.length === 0){
+    alert("Por favor, selecciona al menos una opción.");
+    return;
   }
 
+  const mensaje = `Hola! Confirmamos asistencia de la familia ${CONFIG.familia.nombre}:\n` +
+                  seleccionados.join("\n");
+
+  const url = `https://wa.me/${CONFIG.telefonoWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, "_blank");
+}
   /* ===== REGALOS ===== */
   if(CONFIG.regalos){
     const carta = document.querySelector(".carta");
