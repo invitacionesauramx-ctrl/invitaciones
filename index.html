@@ -210,7 +210,7 @@ body{
 
 /* VESTIMENTA */
 .vestimenta{
-  background:url('https://i.postimg.cc/ZK7pzzhj/1771737166934.png') center/cover no-repeat;
+  background:url('https://i.postimg.cc/"ZK7pzzhj/1771737166934.png') center/cover no-repeat;
   min-height:60vh;
   display:flex;
   flex-direction:column;
@@ -236,7 +236,7 @@ body{
   border:none;
   padding:15px 40px;
   font-size:1.8rem;
-  font-weight:700;
+  font-weight:700;"
   border-radius:50px;
   cursor:pointer;
   font-family:'Playfair Display', serif; /* Elegante y legible */
@@ -537,7 +537,7 @@ padding:0 5px;
 <body>
 
 <!-- ENTRADA DEL SOBRE -->
-<div id="entradaSobre">
+<div id="entradaSobre" onclick="iniciarInvitacion()">
   <img class="sobre-inicial"
        src="https://i.postimg.cc/fW82tq9j/Diseno-sin-titulo-20260223-001937-0000.png"
        alt="Sobre">
@@ -910,11 +910,6 @@ style="height:60px; margin-top:15px;">
   </div>
   
 </section>
-<!-- 🎵 MÚSICA DE FONDO -->
-<audio id="musica-fondo" loop preload="auto" playsinline>
-  <source src="musica.mp3" type="audio/mpeg">
-</audio>
-
 <script src="config.js"></script>
 <script>
 alert("config cargado");
@@ -1199,21 +1194,32 @@ function animarItinerarios() {
 window.addEventListener('scroll', animarItinerarios);
 window.addEventListener('load', animarItinerarios);
 
- // ACORDEONES BLOQUE 9
-  const botonesSugerencia = document.querySelectorAll('.btn-sugerencia');
-  
-  botonesSugerencia.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const contenido = btn.nextElementSibling;
-      if(contenido.style.display === "" || contenido.style.display === "none"){
-        contenido.style.display = "block";
-        btn.innerText = btn.innerText.replace('↓','↑');
-      } else {
-        contenido.style.display = "none";
-        btn.innerText = btn.innerText.replace('↑','↓');
+// ACORDEONES BLOQUE 9
+const botonesSugerencia = document.querySelectorAll('.btn-sugerencia');
+
+botonesSugerencia.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const contenido = btn.nextElementSibling;
+
+    // Opcional: cerrar los otros acordeones
+    botonesSugerencia.forEach(b => {
+      const c = b.nextElementSibling;
+      if(c !== contenido){
+        c.style.display = "none";
+        b.innerText = b.innerText.replace('↑','↓');
       }
     });
+
+    // Alternar el acordeón clickeado
+    if(contenido.style.display === "" || contenido.style.display === "none"){
+      contenido.style.display = "block";
+      btn.innerText = btn.innerText.replace('↓','↑');
+    } else {
+      contenido.style.display = "none";
+      btn.innerText = btn.innerText.replace('↑','↓');
+    }
   });
+});
 
 // GALERÍA VIVIDA - SCRIPT
 const sliderV = document.querySelector('.galeria-vivida-slider');
@@ -1260,7 +1266,19 @@ sobre.classList.toggle("abierto");
 
 }
 
+
 let musicaActivada = false;
+
+document.addEventListener("click", () => {
+  if(!musicaActivada){
+    const musica = document.getElementById("musica-fondo");
+    if(musica){
+      musica.play().then(() => {
+        musicaActivada = true;
+      }).catch(()=>{});
+    }
+  }
+});
 
 function iniciarInvitacion(){
   const sobre = document.getElementById('entradaSobre');
@@ -1268,43 +1286,21 @@ function iniciarInvitacion(){
   setTimeout(() => sobre.style.display = 'none', 1000);
 
   const musica = document.getElementById('musica-fondo');
-
-  if(musica && !musicaActivada){
-    musica.volume = 1;
+  if(musica){
     musica.play().then(()=>{
       musicaActivada = true;
-      console.log("🎵 Música iniciada");
-    }).catch(()=>{
-      alert("Toca la pantalla para activar la música 🎵");
-    });
+    }).catch(e => console.log("Autoplay bloqueado, toca para iniciar música"));
   }
 
+  // Permitir scroll del body
   document.body.style.overflow = 'auto';
 }
 
-/* ===== ACTIVAR EVENTOS DE CLICK Y TOUCH PARA EL SOBRE ===== */
-const sobreEntrada = document.getElementById("entradaSobre");
-
-["click","touchstart"].forEach(evento => {
-  sobreEntrada.addEventListener(evento, () => {
-    // Función que oculta el sobre y muestra el contenido
-    iniciarInvitacion();
-
-    // Reproducir música de fondo
-    const musica = document.getElementById("musica-fondo");
-    if(musica && !musicaActivada){
-      musica.volume = 1;
-      musica.currentTime = 0; // reinicia desde el inicio
-      musica.play().then(()=>{
-        musicaActivada = true;
-        console.log("🎵 Música iniciada");
-      }).catch(()=>{
-        alert("Toca la pantalla para activar la música 🎵");
-      });
-    }
-  }, { once: true }); // Se ejecuta solo una vez
-});
 </script>
+
+<audio id="musica-fondo" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
 
 </body>
 </html>
