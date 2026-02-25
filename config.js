@@ -72,22 +72,5 @@ const CONFIG = {
       { nombre: "Parque bentacourt", direccion: "Calle 1, Ciudad", mapa: "https://www.google.com/maps/search/Parque+Central" },
       { nombre: "Plaza bentacourt", direccion: "Avenida Cultura 22, Ciudad", mapa: "https://www.google.com/maps/search/Museo+de+Arte" }
     ]
-  },
-  colores: {
-
-    primario: "#8e44ad",
-    secundario: "#c39bd3",
-    acento: "#f1c40f",
-
-    fondo: "#FF5733",
-    tarjeta: "rgba(0,0,0,0.55)",
-
-    texto: "#ffffff",
-    textoSecundario: "#dddddd",
-
-    boton: "#FF5733",
-    botonTexto: "#000000"
-
   }
-
 };
