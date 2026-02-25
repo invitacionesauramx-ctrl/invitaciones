@@ -1063,6 +1063,26 @@ window.addEventListener("load", function(){
     if(amazonBtn) amazonBtn.href = CONFIG.regalos.amazon;
   }
 
+/* ===== BLOQUE 9: SUGERENCIAS ===== */
+const hospedajeDiv = document.querySelectorAll('.datos-sugerencia')[0];
+const lugaresDiv = document.querySelectorAll('.datos-sugerencia')[1];
+
+if(hospedajeDiv && CONFIG.sugerencias?.hospedaje){
+  let html = '';
+  CONFIG.sugerencias.hospedaje.forEach(h => {
+    html += `<p><strong>${h.nombre}</strong><br>${h.direccion}<br><a href="${h.mapa}" target="_blank" style="color:#d4af37;">Ver mapa</a></p>`;
+  });
+  hospedajeDiv.innerHTML = html;
+}
+
+if(lugaresDiv && CONFIG.sugerencias?.lugares){
+  let html = '';
+  CONFIG.sugerencias.lugares.forEach(l => {
+    html += `<p><strong>${l.nombre}</strong><br>${l.direccion}<br><a href="${l.mapa}" target="_blank" style="color:#d4af37;">Ver mapa</a></p>`;
+  });
+  lugaresDiv.innerHTML = html;
+}
+    
 });
 /* CUENTA REGRESIVA */
 const fechaEvento=new Date(CONFIG.fechaCuentaRegresiva).getTime();
