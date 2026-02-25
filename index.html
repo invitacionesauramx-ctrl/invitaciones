@@ -618,7 +618,7 @@ padding:0 5px;
 
 <div class="divider"></div>
 
-<!-- RSVP -->
+<!-- RSVP INDIVIDUAL -->
 <section class="bloque-rsvp">
   <div class="rsvp-card">
     <p class="rsvp-titulo">Invitación para:</p>
@@ -626,54 +626,25 @@ padding:0 5px;
     <div class="rsvp-form">
       <select id="numAsistentes">
         <option value="">Selecciona asistentes</option>
-        <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+        <option>1</option><option>2</option><option>3</option>
+        <option>4</option><option>5</option>
       </select>
-      <button onclick="confirmarAsistencia()">CONFIRMAR</button>
+      <button id="btnConfirmarRSVP" onclick="confirmarAsistencia()" class="btn-confirmar">
+        CONFIRMAR
+      </button>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- BLOQUE CONFIRMACIÓN FAMILIA CON WHATSAPP -->
+<!-- CONFIRMACIÓN FAMILIA -->
 <section class="bloque-confirmacion">
   <div class="card-confirmacion">
-    
     <h2 class="titulo-script">Invitación para:</h2>
-    
     <h3 class="nombre-familia">Familia Hernández López</h3>
 
-    <form id="formFamilia">
-      <label class="opcion">
-        <input type="checkbox" name="asistentes" value="Ana Hernández López">
-        Ana Hernández López
-      </label>
-
-      <label class="opcion">
-        <input type="checkbox" name="asistentes" value="Miguel Hernández López">
-        Miguel Hernández López
-      </label>
-
-      <label class="opcion">
-        <input type="checkbox" name="asistentes" value="Sofía Hernández López">
-        Sofía Hernández López
-      </label>
-
-      <label class="opcion">
-        <input type="checkbox" name="asistentes" value="Daniel Hernández López">
-        Daniel Hernández López
-      </label>
-
-      <label class="opcion">
-        <input type="checkbox" name="asistentes" value="No podremos asistir">
-        No podremos asistir
-      </label>
-
-      <button type="button" class="btn-confirmar" onclick="enviarFamiliaWhatsApp()">
-        CONFIRMAR
-      </button>
-    </form>
-
+<form id="formFamilia">
+  <!-- Checkboxes generados por JS -->
+</form>
   </div>
 </section>
 
@@ -944,6 +915,10 @@ style="height:60px; margin-top:15px;">
 alert("config cargado");
 
 window.addEventListener("load", function(){
+  if(typeof CONFIG === "undefined"){
+    console.error("CONFIG no cargó");
+    return;
+  }
 
   /* ===== DATOS PRINCIPALES ===== */
   const nombre = document.getElementById("nombrePrincipal");
@@ -1027,24 +1002,32 @@ window.addEventListener("load", function(){
   }
 
   if(formFamilia && CONFIG.familia){
-    let html = "";
-    CONFIG.familia.miembros.forEach(nombre => {   // ⚠ aquí estaba 'integrantes'
-      html += `
-        <label class="opcion">
-          <input type="checkbox" name="asistentes" value="${nombre}">
-          ${nombre}
-        </label>
-      `;
-    });
+  let html = "";
 
+  CONFIG.familia.miembros.forEach(nombre => {
     html += `
       <label class="opcion">
-        <input type="checkbox" name="asistentes" value="No podremos asistir">
-        No podremos asistir
+        <input type="checkbox" name="asistentes" value="${nombre}">
+        ${nombre}
       </label>
     `;
+  });
 
-    formFamilia.innerHTML = html;
+  html += `
+    <label class="opcion">
+      <input type="checkbox" name="asistentes" value="No podremos asistir">
+      No podremos asistir
+    </label>
+
+    <button type="button" id="btnConfirmarFamilia" class="btn-confirmar">
+      CONFIRMAR ASISTENCIA FAMILIA
+    </button>
+  `;
+
+  formFamilia.innerHTML = html;
+
+  document.getElementById("btnConfirmarFamilia")
+    .addEventListener("click", enviarFamiliaWhatsApp);
 }
 
   /* ===== REGALOS ===== */
@@ -1085,27 +1068,53 @@ if(lugaresDiv && CONFIG.sugerencias?.lugares){
     
 });
 /* CUENTA REGRESIVA */
-const fechaEvento=new Date(CONFIG.fechaCuentaRegresiva).getTime();
-setInterval(()=>{
-  const ahora=new Date().getTime();
-  const d=fechaEvento-ahora;
-  if(d<=0)return;
-  document.getElementById("dias").innerText=Math.floor(d/(1000*60*60*24));
-  document.getElementById("horas").innerText=Math.floor((d%(1000*60*60*24))/(1000*60*60));
-  document.getElementById("minutos").innerText=Math.floor((d%(1000*60*60))/(1000*60));
-  document.getElementById("segundos").innerText=Math.floor((d%(1000*60))/1000);
-},1000);
+let fechaEvento = 0;
+
+window.addEventListener("load", () => {
+  if(typeof CONFIG !== "undefined"){
+    fechaEvento = new Date(CONFIG.fechaCuentaRegresiva).getTime();
+  }
+});
+
+setInterval(() => {
+  if(!fechaEvento) return;
+
+  const ahora = new Date().getTime();
+  const d = fechaEvento - ahora;
+
+  if(d <= 0) return;
+
+  document.getElementById("dias").innerText = Math.floor(d / (1000 * 60 * 60 * 24));
+  document.getElementById("horas").innerText = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  document.getElementById("minutos").innerText = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
+  document.getElementById("segundos").innerText = Math.floor((d % (1000 * 60)) / 1000);
+}, 1000);
 
 /* RSVP WHATSAPP */
 function confirmarAsistencia(){
-  const nombre=document.getElementById("nombreInvitado").innerText;
-  const asistentes=document.getElementById("numAsistentes").value;
-  if(!asistentes){ alert("Selecciona asistentes"); return; }
-  const telefono = CONFIG.telefonoWhatsApp;
-  const mensaje=`Confirmo asistencia 🎉\nNombre: ${nombre}\nAsistentes: ${asistentes}`;
-  window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`,"_blank");
-}
+  const btn = document.getElementById("btnConfirmarRSVP");
+  const nombre = document.getElementById("nombreInvitado").innerText;
+  const asistentes = document.getElementById("numAsistentes").value;
 
+  if(!asistentes){
+    alert("Selecciona asistentes");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.style.opacity = 0.6;
+
+  const telefono = CONFIG.telefonoWhatsApp;
+  const mensaje = 
+    `✨ Confirmación de Asistencia ✨\n\n` +
+    `Nombre: ${nombre}\n` +
+    `Asistentes: ${asistentes}\n\n` +
+    `Evento: ${CONFIG.nombre}\n` +
+    `Fecha: ${CONFIG.fechaTexto}\n\n` +
+    `Gracias 💖`;
+
+  window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`, "_blank");
+}
 /* CONFIRMACIÓN FAMILIA POR WHATSAPP */
 function enviarFamiliaWhatsApp(){
 
@@ -1143,6 +1152,12 @@ telefono +
 "?text=" +
 encodeURIComponent(mensaje);
 
+const btn = document.getElementById("btnConfirmarFamilia");
+if(btn){
+  btn.disabled = true;
+  btn.style.opacity = 0.6;
+  btn.style.cursor = "not-allowed";
+}
 window.open(url,"_blank");
 
 }
@@ -1254,6 +1269,7 @@ function iniciarInvitacion(){
   // Permitir scroll del body
   document.body.style.overflow = 'auto';
 }
+
 </script>
 
 <audio id="musica-fondo" loop>
