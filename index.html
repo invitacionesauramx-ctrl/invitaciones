@@ -532,6 +532,43 @@ padding:0 5px;
   50%{ transform: scale(1.1) rotate(10deg) translateY(0); opacity:1; }
   100%{ transform: scale(1) rotate(0deg) translateY(0); opacity:1; }
 }
+.datos-sugerencia {
+  max-height: 0;          /* empieza cerrado */
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.4s ease;
+  padding: 0 20px;        /* padding lateral para que no quede pegado */
+}
+
+.datos-sugerencia.activo {
+  max-height: 1000px;     /* suficiente altura para cualquier contenido */
+  padding: 20px;          /* padding completo al abrir */
+}
+
+/* Datos del acordeón */
+.datos-sugerencia.activo {
+  max-height: none; /* permite que crezca según contenido */
+  padding: 20px;
+  background:#1b4332; 
+  border:2px solid #d4af37;
+  border-radius:12px;
+  color:white;
+}
+
+.datos-sugerencia.activo {
+  max-height: 1000px; /* suficiente altura */
+  padding: 20px;
+}
+
+/* Flecha rotada */
+.flecha {
+  display: inline-block;
+  transition: transform 0.4s ease;
+}
+
+.flecha.rotada {
+  transform: rotate(180deg);
+}
+
 </style>
 </head>
 <body>
@@ -730,29 +767,29 @@ style="height:60px; margin-top:15px;">
   <div class="contenido" style="position:relative; z-index:2; max-width:900px; margin:auto;">
     <h2 style="font-family:'Great Vibes',cursive; font-size:42px; margin-bottom:40px; color:white;">Sugerencias</h2>
     
-    <!-- HOSPEDAJE -->
-    <div style="margin-bottom:40px; text-align:left; max-width:700px; margin:auto;">
-      <button class="btn-sugerencia" style="width:100%; background:#1b4332; color:#fff; border:2px solid #d4af37; padding:15px 20px; font-size:18px; border-radius:50px; cursor:pointer; font-family:'Playfair Display', serif; font-weight:700; text-align:left; margin-bottom:15px;">
-        Hospedaje ↓
-      </button>
-      <div class="datos-sugerencia" style="display:none; background:#1b4332; border:2px solid #d4af37; padding:20px; border-radius:12px; color:white;">
-        <p><strong>Hotel Paraíso</strong><br>Av. Principal 123, Ciudad<br><a href="https://www.google.com/maps/search/Hotel+Paraiso" target="_blank" style="color:#d4af37;">Ver mapa</a></p>
-        <p><strong>Hotel Sol</strong><br>Calle Luna 45, Ciudad<br><a href="https://www.google.com/maps/search/Hotel+Sol" target="_blank" style="color:#d4af37;">Ver mapa</a></p>
-        <p><strong>Hotel Estrella</strong><br>Av. Central 78, Ciudad<br><a href="https://www.google.com/maps/search/Hotel+Estrella" target="_blank" style="color:#d4af37;">Ver mapa</a></p>
-      </div>
-    </div>
-    
-    <!-- LUGARES TURÍSTICOS -->
-    <div style="margin-bottom:40px; text-align:left; max-width:700px; margin:auto;">
-      <button class="btn-sugerencia" style="width:100%; background:#1b4332; color:#fff; border:2px solid #d4af37; padding:15px 20px; font-size:18px; border-radius:50px; cursor:pointer; font-family:'Playfair Display', serif; font-weight:700; text-align:left; margin-bottom:15px;">
-        Lugares turísticos ↓
-      </button>
-      <div class="datos-sugerencia" style="display:none; background:#1b4332; border:2px solid #d4af37; padding:20px; border-radius:12px; color:white;">
-        <p><strong>Parque Central</strong><br>Calle 1, Ciudad<br><a href="https://www.google.com/maps/search/Parque+Central" target="_blank" style="color:#d4af37;">Ver mapa</a></p>
-        <p><strong>Museo de Arte</strong><br>Avenida Cultura 22, Ciudad<br><a href="https://www.google.com/maps/search/Museo+de+Arte" target="_blank" style="color:#d4af37;">Ver mapa</a></p>
-        <p><strong>Mirador del Valle</strong><br>Calle Mirador 10, Ciudad<br><a href="https://www.google.com/maps/search/Mirador+del+Valle" target="_blank" style="color:#d4af37;">Ver mapa</a></p>
-      </div>
-    </div>
+<!-- HOSPEDAJE -->
+<div style="margin-bottom:40px; text-align:left; max-width:700px; margin:auto;">
+  <button class="btn-sugerencia">
+    Hospedaje <span class="flecha">↓</span>
+  </button>
+  <div class="datos-sugerencia">
+    <p><strong>Hotel Paraíso</strong><br>Av. Principal 123, Ciudad<br><a href="https://www.google.com/maps/search/Hotel+Paraiso" target="_blank" style="color:#d4af37;">Ver mapa</a></p>
+    <p><strong>Hotel Sol</strong><br>Calle Luna 45, Ciudad<br><a href="https://www.google.com/maps/search/Hotel+Sol" target="_blank" style="color:#d4af37;">Ver mapa</a></p>
+    <p><strong>Hotel Estrella</strong><br>Av. Central 78, Ciudad<br><a href="https://www.google.com/maps/search/Hotel+Estrella" target="_blank" style="color:#d4af37;">Ver mapa</a></p>
+  </div>
+</div>
+
+<!-- LUGARES TURÍSTICOS -->
+<div style="margin-bottom:40px; text-align:left; max-width:700px; margin:auto;">
+  <button class="btn-sugerencia">
+    Lugares turísticos <span class="flecha">↓</span>
+  </button>
+  <div class="datos-sugerencia">
+    <p><strong>Parque Central</strong><br>Calle 1, Ciudad<br><a href="https://www.google.com/maps/search/Parque+Central" target="_blank" style="color:#d4af37;">Ver mapa</a></p>
+    <p><strong>Museo de Arte</strong><br>Avenida Cultura 22, Ciudad<br><a href="https://www.google.com/maps/search/Museo+de+Arte" target="_blank" style="color:#d4af37;">Ver mapa</a></p>
+    <p><strong>Mirador del Valle</strong><br>Calle Mirador 10, Ciudad<br><a href="https://www.google.com/maps/search/Mirador+del+Valle" target="_blank" style="color:#d4af37;">Ver mapa</a></p>
+  </div>
+</div>
     
   </div>
 </section>
@@ -1201,22 +1238,26 @@ botonesSugerencia.forEach(btn => {
   btn.addEventListener('click', () => {
     const contenido = btn.nextElementSibling;
 
-    // Opcional: cerrar los otros acordeones
+    // Cerrar otros acordeones
     botonesSugerencia.forEach(b => {
       const c = b.nextElementSibling;
       if(c !== contenido){
-        c.style.display = "none";
-        b.innerText = b.innerText.replace('↑','↓');
+        c.classList.remove('activo');
+        const f = b.querySelector('.flecha');
+        if(f) f.classList.remove('rotada');
       }
     });
 
-    // Alternar el acordeón clickeado
-    if(contenido.style.display === "" || contenido.style.display === "none"){
-      contenido.style.display = "block";
-      btn.innerText = btn.innerText.replace('↓','↑');
-    } else {
-      contenido.style.display = "none";
-      btn.innerText = btn.innerText.replace('↑','↓');
+    // Alternar acordeón clickeado
+    contenido.classList.toggle('activo');
+
+    // Rotar flecha
+    let flecha = btn.querySelector('.flecha');
+    if(flecha) flecha.classList.toggle('rotada');
+
+    // Scroll suave hacia el contenido abierto
+    if(contenido.classList.contains('activo')){
+      contenido.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
 });
@@ -1280,10 +1321,14 @@ document.addEventListener("click", () => {
   }
 });
 
-function iniciarInvitacion(){
-  const sobre = document.getElementById('entradaSobre');
-  sobre.style.opacity = '0';
-  setTimeout(() => sobre.style.display = 'none', 1000);
+function iniciarInvitacion() {
+  const entrada = document.getElementById('entradaSobre');
+  entrada.style.opacity = 0;
+  setTimeout(() => {
+    entrada.style.display = 'none';
+    document.body.style.overflow = 'auto'; // permitir scroll
+  }, 1000);
+}
 
   const musica = document.getElementById('musica-fondo');
   if(musica){
