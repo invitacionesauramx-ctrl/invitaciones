@@ -536,7 +536,7 @@ padding:0 5px;
   100%{ transform: scale(1) rotate(0deg) translateY(0); opacity:1; }  
 }  
 </style>  </head>  
-<body>  <!-- ENTRADA DEL SOBRE -->  <div id="entradaSobre" onclick="iniciarInvitacion()">  
+<body>  <!-- ENTRADA DEL SOBRE -->  <div id="entradaSobre" onclick="iniciarInvitacion(event)">
   <img class="sobre-inicial"  
        src="https://i.postimg.cc/fW82tq9j/Diseno-sin-titulo-20260223-001937-0000.png"  
        alt="Sobre">  
@@ -1032,21 +1032,23 @@ sobre.classList.toggle("abierto");
 }  
   
   
-function iniciarInvitacion(){  
-  const sobre = document.getElementById('entradaSobre');  
-  sobre.style.opacity = '0';  
-  setTimeout(() => sobre.style.display = 'none', 1000);  
-  
-  const musica = document.getElementById('musica-fondo');  
-  if(musica){  
-    musica.play().catch(e => console.log("Autoplay bloqueado, toca para iniciar música"));  
-  }  
-  
-  // Permitir scroll del body  
-  document.body.style.overflow = 'auto';  
-}  
-  
-function mostrarModalConfirmacion() {  
+function iniciarInvitacion(){
+
+  const musica = document.getElementById("musica-fondo");
+  if(musica){
+    musica.play().catch(e => console.log(e));
+  }
+
+  const sobre = document.getElementById("entradaSobre");
+  sobre.style.opacity = "0";
+
+  setTimeout(() => {
+      sobre.style.display = "none";
+      document.body.style.overflow = "auto";
+  }, 800);
+}
+
+  function mostrarModalConfirmacion() {  
   const modal = document.getElementById('modalConfirmacion');  
   const contenido = document.getElementById('modalContent');  
   
