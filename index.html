@@ -1322,12 +1322,14 @@ document.addEventListener("click", () => {
 });
 
 function iniciarInvitacion() {
-  const entrada = document.getElementById('entradaSobre');
-  entrada.style.opacity = 0;
-  setTimeout(() => {
-    entrada.style.display = 'none';
-    document.body.style.overflow = 'auto'; // permitir scroll
-  }, 1000);
+  const entrada = document.getElementById("entradaSobre");
+  if(entrada){
+    entrada.style.opacity = 0;
+    entrada.style.pointerEvents = "none";
+    setTimeout(() => {
+      entrada.style.display = "none";
+    }, 600);
+  }
 }
 
   const musica = document.getElementById('musica-fondo');
